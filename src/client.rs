@@ -166,9 +166,8 @@ fn from_process(process: &str) -> Option<Vec<String>> {
 
     let process_exe = format!("{}.exe", process);
 
-    let lines = stdout.lines().filter(|x| x.contains(&process_exe));
-
-    let lines: Vec<String> = lines
+    let lines = stdout.lines()
+        .filter(|x| x.contains(&process_exe))
         .filter(|x| x.contains("--app-port") && x.contains("--remoting-auth-token"))
         .map(String::from)
         .collect();
